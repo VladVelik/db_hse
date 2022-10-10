@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "vladislav_sosin206"
+      POSTGRES_USER: "vladislav_sosin206"
+      POSTGRES_PASSWORD: "vladislav_sosin206"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/first.sql:/docker-entrypoint-initdb.d/first.sql
+      - ./docker/db/scripts/second.sql:/docker-entrypoint-initdb.d/second.sql
+      - ./docker/db/scripts/third.sql:/docker-entrypoint-initdb.d/third.sql
+
+      - ./hw:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
